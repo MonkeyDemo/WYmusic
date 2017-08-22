@@ -3,9 +3,11 @@ package kingtuoware.com.wymusic.controller.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 
 import kingtuoware.com.wymusic.R;
 
@@ -14,7 +16,8 @@ import kingtuoware.com.wymusic.R;
  */
 public class MusicFragment extends Fragment {
 
-
+    private SwipeRefreshLayout mRefresh;
+    private ExpandableListView mExListView;
     public MusicFragment() {
         // Required empty public constructor
     }
@@ -24,7 +27,14 @@ public class MusicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music, container, false);
+        View layout = inflater.inflate(R.layout.fragment_music,container,false);
+        initView(layout);
+        return layout;
+    }
+
+    private void initView(View layout) {
+        mRefresh = (SwipeRefreshLayout) layout.findViewById(R.id.srl_refresh);
+        mExListView = (ExpandableListView) layout.findViewById(R.id.el_list);
     }
 
 }
