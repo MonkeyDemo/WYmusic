@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:layout_alignParentBottom="true"
+    >
+
+    <ImageView
+        android:id="@+id/iv_music_thum"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="5dp"/>
+    <LinearLayout
+        android:layout_toRightOf="@id/iv_music_thum"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"/>
+        <TextView
+            android:id="@+id/tv_music_name"
+            android:text="name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3.5"
+            android:textSize="15sp"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tv_music_author"
+            android:text="author"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textSize="10sp"
+            android:layout_weight="2.5"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_list"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_width="40dp"
+        android:background="@drawable/list"
+        android:layout_height="40dp" />
+    <Button
+        android:id="@+id/btn_on_or_off"
+        android:layout_toLeftOf="@id/btn_list"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+</RelativeLayout>
