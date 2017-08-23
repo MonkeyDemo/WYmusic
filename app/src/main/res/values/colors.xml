@@ -7,4 +7,8 @@
 
     <!--title_bar-->
     <color name="title_bg">#DC143C</color>
+
+    <!--fragment_music-->
+    <color name="backgroud">#EDEDED</color>
+    <color name="songsheet_bg">#DEDEDE</color>
 </resources>

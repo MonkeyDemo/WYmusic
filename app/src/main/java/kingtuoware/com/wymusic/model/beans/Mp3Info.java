@@ -4,7 +4,12 @@ package kingtuoware.com.wymusic.model.beans;
 import java.io.Serializable;
 
 /**
- * Created by xww on 2017/8/17.
+ *  音乐实体类
+ * =====================================
+ * 作    者: 许登乔
+ * 创建日期：2017-8-23
+ * 描    述：
+ * =====================================
  */
 
 public class Mp3Info implements Serializable {

@@ -1,25 +1,34 @@
 package kingtuoware.com.wymusic.controller.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import kingtuoware.com.wymusic.R;
+import kingtuoware.com.wymusic.model.beans.SongGroupBean;
 import kingtuoware.com.wymusic.model.beans.SongSheetBean;
+import kingtuoware.com.wymusic.model.utils.MusicUtils;
 
 /**
- * Created by xww on 2017/8/22.
+ *  ExpandableListView适配器
+ * =====================================
+ * 作    者: 许登乔
+ * 创建日期：2017-8-23
+ * 描    述：
+ * =====================================
  */
-
 public class MusicFragmentAdapter extends BaseExpandableListAdapter {
-    List<String> groupList;
-    List<SongSheetBean> childList;
+    List<SongGroupBean> groupList;
+    List<List<SongSheetBean>> childList;
     Context mContext;
 
-    public MusicFragmentAdapter(List<String> groupList, List<SongSheetBean> childList, Context mContext) {
+    public MusicFragmentAdapter(List<SongGroupBean> groupList, List<List<SongSheetBean>> childList, Context mContext) {
         this.groupList = groupList;
         this.childList = childList;
         this.mContext = mContext;
@@ -32,7 +41,7 @@ public class MusicFragmentAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return childList!=null?childList.size():0;
+        return childList!=null?(childList.get(groupPosition)!=null?childList.get(groupPosition).size():0):0;
     }
 
     @Override
@@ -42,7 +51,7 @@ public class MusicFragmentAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return getGroupCount()!=0&&childList!=null&&childList.size()>0?childList.get(childPosition):null;
+        return childList!=null?(childList.get(groupPosition)!=null&&childList.get(groupPosition).size()>0?childList.get(groupPosition).get(childPosition):null):null;
     }
 
     @Override
@@ -57,21 +66,103 @@ public class MusicFragmentAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        GroupHolder holder = null;
+        if (convertView==null){
+            if (groupPosition==groupList.size()-1){
+                convertView = inflater.inflate(R.layout.fragment_music_group_item2,null);
+            }else{
+                convertView = inflater.inflate(R.layout.fragment_music_group_item1, null);
+            }
+            holder = new GroupHolder();
+            holder.ivRight = (ImageView) convertView.findViewById(R.id.iv_right);
+            holder.tvNum = (TextView) convertView.findViewById(R.id.tv_num);
+            holder.tvText = (TextView) convertView.findViewById(R.id.tv_text);
+            holder.ivLeft = (ImageView) convertView.findViewById(R.id.iv_Left);
+            convertView.setTag(holder);
+        }else{
+            holder = (GroupHolder) convertView.getTag();
+        }
+        if (groupList!=null&&groupList.size()>0){
+            SongGroupBean bean = groupList.get(groupPosition);
+            holder.tvNum.setText("("+bean.getGroupNum()+")");
+            holder.tvText.setText(bean.getGroupName());
+            if (bean.isPlaying()){
+                holder.ivRight.setVisibility(View.VISIBLE);
+            }else{
+                holder.ivRight.setVisibility(View.GONE);
+            }
+            switch (groupPosition){
+                case 0:
+                    holder.ivLeft.setImageResource(R.drawable.local);
+                    break;
+                case 1:
+                    holder.ivLeft.setImageResource(R.drawable.recent);
+                    break;
+                case 2:
+                    holder.ivLeft.setImageResource(R.drawable.download);
+                    break;
+                case 3:
+                    holder.ivLeft.setImageResource(R.drawable.diantai_red);
+                    break;
+                case 4:
+                    holder.ivLeft.setImageResource(R.drawable.collection);
+                    break;
+                case 5:
+                    holder.ivLeft.setImageResource(R.drawable.angle_down);
+                    break;
+            }
+        }
+        return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        ChildHolder holder = null;
+        if (convertView==null){
+            convertView = inflater.inflate(R.layout.fragment_music_child_item,null);
+            holder = new ChildHolder();
+            holder.ivLeft = (ImageView) convertView.findViewById(R.id.iv_picLeft);
+            holder.ivSelect = (ImageView) convertView.findViewById(R.id.iv_select);
+            holder.ivRight = (ImageView) convertView.findViewById(R.id.iv_right);
+            holder.tvNum = (TextView) convertView.findViewById(R.id.tv_num);
+            holder.tvText = (TextView) convertView.findViewById(R.id.tv_text);
+            convertView.setTag(holder);
+        }else{
+            holder = (ChildHolder) convertView.getTag();
+        }
+        if (childList!=null&&childList.size()>0){
+            SongSheetBean bean = childList.get(groupPosition).get(childPosition);
+            holder.tvText.setText(bean.getTitle());
+            holder.tvNum.setText("("+bean.getContentNum()+")");
+            if (bean.getPicPath()==null){
+                //加载默认图片
+            }else{
+                holder.ivLeft.setImageBitmap(MusicUtils.createAlbumThumbnail(bean.getPicPath()));
+            }
+        }
+        return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
+
+    public class GroupHolder{
+        ImageView ivRight,ivLeft;
+        TextView tvNum,tvText;
+    }
+
+    public class ChildHolder{
+        ImageView ivLeft,ivRight,ivSelect;
+        TextView tvText,tvNum;
+    }
+
 }

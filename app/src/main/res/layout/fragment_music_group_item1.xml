@@ -2,30 +2,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_collection"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:clickable="true"
+    android:layout_height="match_parent"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
+    android:minHeight="50dp"
     >
     <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:id="@+id/iv_Left"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_gravity="center_vertical"/>
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/tv_collection"
+            android:id="@+id/tv_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:text="我的收藏"
             android:layout_centerVertical="true"/>
         <TextView
-            android:id="@+id/tv_collection_num"
-            android:layout_toRightOf="@id/tv_collection"
+            android:id="@+id/tv_num"
+            android:layout_toRightOf="@id/tv_text"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,10 +39,13 @@
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
             android:background="@android:color/darker_gray"/>
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/volume"
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
-    <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="center_vertical"/>
 </LinearLayout>
