@@ -3,8 +3,13 @@ package kingtuoware.com.wymusic.controller.activity;
 import android.os.Bundle;
 import android.view.Window;
 
+import java.util.List;
+
 import kingtuoware.com.wymusic.R;
+import kingtuoware.com.wymusic.model.beans.Mp3Info;
+import kingtuoware.com.wymusic.model.db.DBservice;
 import kingtuoware.com.wymusic.model.utils.MFGT;
+import kingtuoware.com.wymusic.model.utils.MusicUtils;
 
 public class WelcomeActivity extends BaseActivity {
 
@@ -26,7 +31,12 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(welcomeSleep);
+                    long startTime= System.currentTimeMillis();
+                    init();
+                    long endTime = System.currentTimeMillis();
+                    if (endTime-startTime<welcomeSleep){
+                        Thread.sleep(welcomeSleep-(endTime-startTime));
+                    }
                     MFGT.gotoMain(WelcomeActivity.this);
                     finish();
                 } catch (InterruptedException e) {
@@ -34,6 +44,11 @@ public class WelcomeActivity extends BaseActivity {
                 }
             }
         }.start();
+    }
+
+    private void init() {
+        List<Mp3Info> mp3List = MusicUtils.getInstanse(this).getMp3List();
+        DBservice.getInstance(this).mp3InfoMultInsert(mp3List);
     }
 
 }

@@ -18,6 +18,7 @@ import kingtuoware.com.wymusic.model.beans.Mp3Info;
  */
 
 public class MusicUtils {
+    static final String TYPE_MP3 = "audio/mpeg";
     static Context mContext;
     private static MusicUtils instanse;
 
@@ -48,7 +49,8 @@ public class MusicUtils {
             int duration = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));
             int size = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE));
             int isMusic = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.IS_MUSIC));
-            if (isMusic==0){
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.MIME_TYPE));
+            if (isMusic==0&&!TYPE_MP3.equals(type)){
                 continue;
             }
             temp.setId(id);

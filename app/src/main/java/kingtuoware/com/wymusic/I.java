@@ -40,4 +40,7 @@ public interface I {
     static final String ACTION_MUNIC_INFO = "kingtopware.com.wymusic.MUSIC_INFO";
     static final String info = "musicInfo";
 
+    //数据库
+    static final String DBNAME = "wy_music_db";     /** 数据库名 **/
+
 }

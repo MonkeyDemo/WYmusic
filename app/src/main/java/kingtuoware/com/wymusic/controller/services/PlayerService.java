@@ -15,6 +15,7 @@ import java.util.Random;
 
 import kingtuoware.com.wymusic.I;
 import kingtuoware.com.wymusic.model.beans.Mp3Info;
+import kingtuoware.com.wymusic.model.db.DBservice;
 import kingtuoware.com.wymusic.model.utils.MusicUtils;
 
 /**
@@ -44,11 +45,11 @@ public class PlayerService extends Service implements MediaPlayer.OnPreparedList
         isPause = true;
         isStop = true;
         //获得手机音频信息
-        mMp3List= MusicUtils.getInstanse(this).getMp3List();
-        if (mMp3List!=null&&mMp3List.size()>0){
-            path = mMp3List.get(currentPosition).getPath();
-            mCurrentMp3info = mMp3List.get(currentPosition);
-        }
+//        mMp3List= MusicUtils.getInstanse(this).getMp3List();
+//        if (mMp3List!=null&&mMp3List.size()>0){
+//            path = mMp3List.get(currentPosition).getPath();
+//            mCurrentMp3info = mMp3List.get(currentPosition);
+//        }
     }
 
     @Nullable
@@ -59,6 +60,9 @@ public class PlayerService extends Service implements MediaPlayer.OnPreparedList
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (mMp3List==null){
+            mMp3List = DBservice.getInstance(getApplicationContext()).getAllMp3Info();
+        }
         if(mMp3List!=null&&mMp3List.size()>0){
             mCurrentMp3info = mMp3List.get(currentPosition);
             path = mCurrentMp3info.getPath();

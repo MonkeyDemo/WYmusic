@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/title_bg">
+    android:background="@color/title_bg"
+    >
 
     <RelativeLayout
         android:id="@+id/rl_menu"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:visibility="gone">
         <ImageView
             android:id="@+id/iv_menu"
             android:layout_width="20dp"
@@ -17,13 +19,21 @@
             android:src="@drawable/main_menu"
             />
     </RelativeLayout>
-
+    <ImageButton
+        android:id="@+id/ib_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/back"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
     <LinearLayout
         android:id="@+id/ll_tab"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:visibility="gone"
         >
         <ImageView
             android:id="@+id/iv_music"
@@ -52,13 +62,37 @@
             android:background="@drawable/tab_person_selector"
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_search"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/main_search"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_toRightOf="@id/ib_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true">
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/main_search"
+            android:layout_gravity="center_vertical"
+            android:visibility="gone"/>
+        <ImageButton
+            android:id="@+id/ib_action"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/action"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:visibility="gone"
+            />
+    </LinearLayout>
 </RelativeLayout>

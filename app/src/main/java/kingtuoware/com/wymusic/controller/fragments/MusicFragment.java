@@ -2,9 +2,11 @@ package kingtuoware.com.wymusic.controller.fragments;
 
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DrawableUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,8 @@ import kingtuoware.com.wymusic.controller.adapter.MusicFragmentAdapter;
 import kingtuoware.com.wymusic.model.beans.Mp3Info;
 import kingtuoware.com.wymusic.model.beans.SongGroupBean;
 import kingtuoware.com.wymusic.model.beans.SongSheetBean;
+import kingtuoware.com.wymusic.model.db.DBservice;
+import kingtuoware.com.wymusic.model.utils.MFGT;
 import kingtuoware.com.wymusic.model.utils.MusicUtils;
 
 /**
@@ -94,7 +98,8 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     @Override
     public void onRefresh() {
         //刷新监听
-        List<Mp3Info> list = MusicUtils.getInstanse(mContext).getMp3List();
+//        List<Mp3Info> list = MusicUtils.getInstanse(mContext).getMp3List();
+        List<Mp3Info> list = DBservice.getInstance(mContext).getAllMp3Info();
         groupList.get(0).setGroupNum(list.size());
         mAdapter.notifyDataSetChanged();
         mRefresh.setRefreshing(false);
@@ -104,6 +109,7 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
         switch (groupPosition){
             case 0:
+                MFGT.gotoLocalMusic(mContext);
                 break;
             case 1:
                 break;
@@ -114,6 +120,7 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
             case 4:
                 break;
             case 5:
+                //箭头旋转
                 break;
         }
         return false;

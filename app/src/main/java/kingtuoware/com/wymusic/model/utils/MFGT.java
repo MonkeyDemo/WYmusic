@@ -1,9 +1,11 @@
 package kingtuoware.com.wymusic.model.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import kingtuoware.com.wymusic.I;
+import kingtuoware.com.wymusic.controller.activity.LocalMusicActivity;
 import kingtuoware.com.wymusic.controller.activity.MainActivity;
 import kingtuoware.com.wymusic.controller.activity.PlayerActivity;
 import kingtuoware.com.wymusic.controller.services.PlayerService;
@@ -58,5 +60,9 @@ public class MFGT {
             intent.putExtra(I.MSG_MUSIC_LOOP_TYPE,param);
         }
         startService(context,intent);
+    }
+
+    public static void gotoLocalMusic(Context context) {
+        startActivity((Activity) context, LocalMusicActivity.class);
     }
 }

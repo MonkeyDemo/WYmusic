@@ -19,7 +19,7 @@ import kingtuoware.com.wymusic.model.utils.MFGT;
 import kingtuoware.com.wymusic.model.utils.MusicUtils;
 import kingtuoware.com.wymusic.model.weidgts.SwichPager;
 
-public class PlayerActivity extends AppCompatActivity implements View.OnClickListener,SeekBar.OnSeekBarChangeListener{
+public class PlayerActivity extends BaseActivity implements View.OnClickListener,SeekBar.OnSeekBarChangeListener{
     private static final String TAG = PlayerActivity.class.getSimpleName();
     ImageView mIvBack,mIvShare;
     ImageView mIvPlay,mIvPrevious,mIvNext,mIvLoop;

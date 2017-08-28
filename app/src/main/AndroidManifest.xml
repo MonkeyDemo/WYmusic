@@ -2,14 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kingtuoware.com.wymusic">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".controller.application.WYmusicApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_lunch"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme2"
-        android:name=".controller.application.WYmusicApplication">
+        android:theme="@style/AppTheme2">
         <activity android:name=".controller.activity.MainActivity" />
         <activity android:name=".controller.activity.WelcomeActivity">
             <intent-filter>
@@ -18,9 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.activity.BaseActivity"></activity>
-        <activity android:name=".controller.activity.PlayerActivity"/>
-        <service android:name=".controller.services.PlayerService"></service>
+        <activity android:name=".controller.activity.BaseActivity" />
+        <activity android:name=".controller.activity.PlayerActivity" />
+
+        <service android:name=".controller.services.PlayerService" />
+
+        <activity android:name=".controller.activity.LocalMusicActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

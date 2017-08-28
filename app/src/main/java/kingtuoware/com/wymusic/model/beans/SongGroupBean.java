@@ -1,5 +1,7 @@
 package kingtuoware.com.wymusic.model.beans;
 
+import com.ping.greendao.gen.Mp3InfoDao;
+
 import java.io.Serializable;
 
 /**

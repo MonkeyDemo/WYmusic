@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:app="http://schemas.android.com/apk/res-auto">
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="transparence">@null</color>
 
 
     <!--title_bar-->
@@ -11,4 +12,13 @@
     <!--fragment_music-->
     <color name="backgroud">#EDEDED</color>
     <color name="songsheet_bg">#DEDEDE</color>
+
+    <!--tabindicator-->
+    <color name="tabtextcolor">#aaa</color>
+    <color name="tabtextselect">#DC143C</color>
+    <color name="tabdownlinecolor">#DC143C</color>
+
+    <!-- footer-->
+    <color name="textMusicName">#000</color>
+    <color name="textMusicAuthor">#aaa</color>
 </resources>

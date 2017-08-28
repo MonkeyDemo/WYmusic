@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ping.greendao.gen.DaoSession;
+import com.ping.greendao.gen.Mp3InfoDao;
+
 import kingtuoware.com.wymusic.I;
 import kingtuoware.com.wymusic.R;
 import kingtuoware.com.wymusic.controller.adapter.MainTabAdapter;
@@ -38,10 +41,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().hide();
-        }
         setContentView(R.layout.activity_main);
         initView();
         register();
@@ -50,6 +49,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initView() {
         mIvMenu = (ImageView) findViewById(R.id.iv_menu);
         mIvMenu.setOnClickListener(this);
+        findViewById(R.id.rl_menu).setVisibility(View.VISIBLE);
+        findViewById(R.id.ll_tab).setVisibility(View.VISIBLE);
+        findViewById(R.id.iv_search).setVisibility(View.VISIBLE);
         mIvDiantai = (ImageView) findViewById(R.id.iv_diantai);
         mIvDiantai.setOnClickListener(this);
         mIvMusic = (ImageView) findViewById(R.id.iv_music);
@@ -138,7 +140,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
     private void tabChange(int currentPager){

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -115,12 +117,27 @@ public class MusicFragmentAdapter extends BaseExpandableListAdapter {
                     break;
                 case 5:
                     holder.ivLeft.setImageResource(R.drawable.angle_down);
+                    rorateAnim(isExpanded,holder.ivLeft);
                     break;
             }
         }
         return convertView;
     }
 
+    public void rorateAnim(boolean isExpanded,View view){
+        float startAngee ,endAngee;
+        if (isExpanded){
+            startAngee = -90.0f;
+            endAngee=0.0f;
+        }else{
+            startAngee = 0.0f;
+            endAngee =-90.0f;
+        }
+        RotateAnimation animation = new RotateAnimation(startAngee,endAngee, Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(300);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+    }
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
